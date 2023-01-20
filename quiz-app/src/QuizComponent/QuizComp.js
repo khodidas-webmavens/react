@@ -80,6 +80,7 @@ const QuizComp = () => {
                             {Questionbank[currentQuestion].AnswerText.map((answer)=>
                             (
                                 <button onClick={()=>handleAnswerResponse(answer.isCorrect)}>{answer.Answer}</button>
+                                18:15
                             ))}
                         </div>
                     </>
