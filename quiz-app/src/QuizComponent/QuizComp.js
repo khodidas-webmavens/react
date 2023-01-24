@@ -80,30 +80,30 @@ const QuizComp = () => {
         setshowScore(false)
     }
     return (
-        <div className="border rounded-md px-8 py-8">
+        <div className="border rounded-md px-8 py-8 bg-gray-900">
             <div className="text-white">
                 Quiz app
             </div>
             {showScore?(
-                <div className="text-white">
-                    you have score{score} out of{Questionbank.length}
+                <div className="text-white mt-5">
+                    You have score {score} out of {Questionbank.length}
                     <>
-                        <button className="border" type="submit" onClick={resetQuiz}>try again</button>
+                        <button className="border rounded-md px-3 ml-3" type="submit" onClick={resetQuiz}>try again</button>
                     </>
                 </div>
             )
                 : (
                     <>
                         <div>
-                            <div className="text-white">
+                            <div className="text-white mt-5">
                                 <span>{currentQuestion+1}</span>/{Questionbank.length}
                             </div>
-                            <div className="text-white">
+                            <div className="text-white mt-5">
                                 {Questionbank[currentQuestion].Question}
                             </div>
                         </div>
 
-                        <div className="text-xl mt-5">
+                        <div className="text-xl mt-5 mt-5">
                             {Questionbank[currentQuestion].Answers.map((answer)=>
                             (
                                 <button className="border ml-5 px-6 py-1 rounded-md text-white" onClick={()=>handleAnswerResponse(answer.isCorrect)}>{answer.Answer}</button>
