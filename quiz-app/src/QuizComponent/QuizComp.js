@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import './quizstyle.css'
 
 const QuizComp = () => {
     var Questionbank = [
         {
             Question: "what is name of you compny ?",
-            AnswerText: [
+            Answers: [
                 { Answer: "wm", isCorrect: true },
                 { Answer: "tcs", isCorrect: false },
                 { Answer: "ibm", isCorrect: false },
@@ -14,7 +15,7 @@ const QuizComp = () => {
         },
         {
             Question: "what india capital ?",
-            AnswerText: [
+            Answers: [
                 { Answer: "dilhi", isCorrect: true },
                 { Answer: "guj", isCorrect: false },
                 { Answer: "rajs", isCorrect: false },
@@ -23,7 +24,7 @@ const QuizComp = () => {
         },
         {
             Question: "what is date when celb indipendesday?",
-            AnswerText: [
+            Answers: [
                 { Answer: "26jan", isCorrect: true },
                 { Answer: "15og", isCorrect: false },
                 { Answer: "31oct", isCorrect: false },
@@ -32,7 +33,7 @@ const QuizComp = () => {
         },
         {
             Question: "what is teachers day date ?",
-            AnswerText: [
+            Answers: [
                 { Answer: "5spt", isCorrect: true },
                 { Answer: "5oct", isCorrect: false },
                 { Answer: "5nov", isCorrect: false },
@@ -41,7 +42,7 @@ const QuizComp = () => {
         },
         {
             Question: "what is emp in wm ? includ self emp",
-            AnswerText: [
+            Answers: [
                 { Answer: "21", isCorrect: true },
                 { Answer: "22", isCorrect: false },
                 { Answer: "23", isCorrect: false },
@@ -57,30 +58,54 @@ const QuizComp = () => {
     const [score, setScore] = useState(0);
     const [showScore, setshowScore] = useState(false);
 
+    const handleAnswerResponse=(isCorrect)=>
+    {
+        if(isCorrect)
+        {
+            setScore(score+1);
+        }
+        const nextQuestion = currentQuestion+1;
+        if(nextQuestion<Questionbank.length)
+        {
+            setCurrentQuestion(nextQuestion);
+        }else{
+            setshowScore(true)
+        }
+    }
+
+    const resetQuiz=()=>{
+
+        setCurrentQuestion(0)
+        setScore(0)
+        setshowScore(false)
+    }
     return (
         <div>
             Quiz app
-            {showScore ? (
+            {showScore?(
                 <div>
                     you have score{score} out of{Questionbank.length}
+                    <>
+                        <button type="submit" onClick={resetQuiz}>try again</button>
+                    </>
                 </div>
             )
                 : (
                     <>
-                        <div className='question----'>
-                            <div className='question-num'>
-                                <span>{currentQuestion}</span>/{Questionbank.length}
+                        <div>
+                            <div>
+                                <span>{currentQuestion+1}</span>/{Questionbank.length}
                             </div>
-                            <div className='question-text'>
-                                {currentQuestion[currentQuestion].Question}
+                            <div>
+                                {Questionbank[currentQuestion].Question}
                             </div>
                         </div>
 
-                        <div className='answer'>
-                            {Questionbank[currentQuestion].AnswerText.map((answer)=>
+                        <div>
+                            {Questionbank[currentQuestion].Answers.map((answer)=>
                             (
                                 <button onClick={()=>handleAnswerResponse(answer.isCorrect)}>{answer.Answer}</button>
-                                18:15
+                                
                             ))}
                         </div>
                     </>

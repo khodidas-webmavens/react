@@ -1,0 +1,7 @@
+body{
+    background-color: rgb(110, 104, 15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+}
